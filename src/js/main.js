@@ -49,6 +49,10 @@ const board = document.querySelector("#board");
 //mélange des cartes
 shuffle(emojis);
 
+//création des variables de choix
+let firstChoice = null;
+let secondChoice = null;
+
 //boucle pour la création des cartes
 emojis.forEach((emoji) => {
   //création d'un carte
@@ -65,6 +69,27 @@ emojis.forEach((emoji) => {
 
   //retourner la carte au click
   card.addEventListener("click", function () {
-    card.classList.remove("hidden");
+    //condition: si firstChoice n'a pas encore de carte assignée
+    if (firstChoice === null) {
+      //on attibue la carte actuelle à firstChoice
+      firstChoice = card;
+      //et on la révèle
+      card.classList.remove("hidden");
+    } else if (secondChoice === null) {
+      //on attribue la carte actuelle à secondChoice
+      secondChoice = card;
+      //et on la révèle
+      card.classList.remove("hidden");
+    } else {
+      if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
+        firstChoice = null;
+        secondChoice = null;
+      } else {
+        firstChoice.classList.add("hidden");
+        secondChoice.classList.add("hidden");
+        firstChoice = null;
+        secondChoice = null;
+      }
+    }
   });
 });
