@@ -13,7 +13,7 @@
   position: relative;
   border: solid 2px darkblue;
   border-radius: 20px;
-  box-shadow: 10px 10px 0px 0px darkblue;
+  box-shadow: 0px 10px 0px 0px darkblue;
 
   &:not(.hidden)::after {
     content: attr(data-emoji);
@@ -25,5 +25,9 @@
 
   &.hidden {
     background-color: lightblue;
+  }
+  &.pressed {
+    transform: translateY(10px);
+    box-shadow: 0 0 0 0 #000080;
   }
 }

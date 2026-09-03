@@ -75,11 +75,13 @@ emojis.forEach((emoji) => {
       firstChoice = card;
       //et on la révèle
       card.classList.remove("hidden");
+      card.classList.add("pressed");
     } else if (secondChoice === null) {
       //on attribue la carte actuelle à secondChoice
       secondChoice = card;
       //et on la révèle
       card.classList.remove("hidden");
+      card.classList.add("pressed");
     } else {
       if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
         firstChoice = null;
@@ -87,6 +89,8 @@ emojis.forEach((emoji) => {
       } else {
         firstChoice.classList.add("hidden");
         secondChoice.classList.add("hidden");
+        firstChoice.classList.remove("pressed");
+        secondChoice.classList.remove("pressed");
         firstChoice = null;
         secondChoice = null;
       }
