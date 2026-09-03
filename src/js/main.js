@@ -5,6 +5,7 @@ const board = document.querySelector("#board");
 const card = document.createElement("div");
 //lien entre la carte et le style .card
 card.classList.add("card");
+card.dataset.emoji = "👀";
 
 //ajout de la carte au board
 board.appendChild(card);
