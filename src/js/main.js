@@ -1,14 +1,3 @@
-//récupération du board
-const board = document.querySelector("#board");
-
-//création d'un carte
-const card = document.createElement("div");
-//lien entre la carte et le style .card
-card.classList.add("card");
-
-card.dataset.emoji = "👀";
-
-//boucle pour la création des cartes
 const emojis = [
   "👄",
   "🧚‍♀️",
@@ -22,7 +11,25 @@ const emojis = [
   "🌵",
   "🌻",
   "🐝",
-];
+  "✌️",
+  "🫥",
+  "❤️",
+  "👹",
+  "🦷",
+  "👻",
+]; //tableau des emojis
 
-//ajout de la carte au board
-board.appendChild(card);
+//récupération du board
+const board = document.querySelector("#board");
+
+//boucle pour la création des cartes
+emojis.forEach((emoji) => {
+  //création d'un carte
+  const card = document.createElement("div");
+  //lien entre la carte et le style .card
+  card.classList.add("card");
+  //lien entre le dataset.emoji et les attribut css
+  card.dataset.emoji = emoji;
+  //ajout de la carte au board
+  board.appendChild(card);
+});
