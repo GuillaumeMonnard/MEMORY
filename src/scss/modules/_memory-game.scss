@@ -14,11 +14,15 @@
   border: solid 2px black;
   border-radius: 20px;
 
-  &::after {
+  &:not(.hidden)::after {
     content: attr(data-emoji);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  &.hidden {
+    background-color: black;
   }
 }
