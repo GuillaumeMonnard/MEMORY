@@ -3,28 +3,34 @@ const emojis = [
   "👄",
   "🧚‍♀️",
   "💩",
-  "🐢",
-  "🤡",
-  "👁️",
-  "🐤",
-  "🙊",
-  "🌽",
-  "🌵",
-  "🌻",
-  "🐝",
+  // "🐢",
+  // "🤡",
+  // "👁️",
+  // "🐤",
+  // "🙊",
+  // "🌽",
+  // "🌵",
+  // "🌻",
+  // "🐝",
   "👄",
   "🧚‍♀️",
   "💩",
-  "🐢",
-  "🤡",
-  "👁️",
-  "🐤",
-  "🙊",
-  "🌽",
-  "🌵",
-  "🌻",
-  "🐝",
+  // "🐢",
+  // "🤡",
+  // "👁️",
+  // "🐤",
+  // "🙊",
+  // "🌽",
+  // "🌵",
+  // "🌻",
+  // "🐝",
 ];
+
+//nombre de paires
+const cardNumber = emojis.length / 2;
+
+//nombre de paires trouvées
+let cardFoundNumber = document.querySelectorAll("found").length / 2;
 
 //fonction de mélange aléatoire
 function shuffle(array) {
@@ -67,7 +73,6 @@ emojis.forEach((emoji) => {
 
   //ajout de la carte au board
   board.appendChild(card);
-
   //retourner la carte au click
   card.addEventListener("click", function () {
     //condition: si firstChoice n'a pas encore de carte assignée
@@ -103,6 +108,11 @@ emojis.forEach((emoji) => {
         secondChoice.classList.add("found");
         firstChoice = null;
         secondChoice = null;
+        //vérifier s'il reste des cartes
+        cardFoundNumber = document.querySelectorAll(".found").length / 2;
+        if (cardFoundNumber === cardNumber) {
+          console.log("TU AS GAGNÉ MON CHAMPION");
+        }
       } else {
         //Si elles sont différentes
         //on les caches
