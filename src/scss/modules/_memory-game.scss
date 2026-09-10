@@ -26,12 +26,9 @@
   &.hidden {
     background-color: lightblue;
   }
-  &.pressed {
-    transform: translateY(10px);
-    box-shadow: 0 0 0 0 #000080;
-  }
 
   &.active {
-    border: solid 2px red($color: #000000);
+    border: solid 2px red;
+    box-shadow: 0px 10px 0px 0px red;
   }
 }
