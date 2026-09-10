@@ -1,3 +1,4 @@
+//tableau des emojis
 const emojis = [
   "👄",
   "🧚‍♀️",
@@ -23,7 +24,7 @@ const emojis = [
   "🌵",
   "🌻",
   "🐝",
-]; //tableau des emojis
+];
 
 //fonction de mélange aléatoire
 function shuffle(array) {
