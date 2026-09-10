@@ -29,9 +29,6 @@ const emojis = [
 //nombre de paires
 const cardNumber = emojis.length / 2;
 
-//nombre de paires trouvées
-let cardFoundNumber = document.querySelectorAll("found").length / 2;
-
 //fonction de mélange aléatoire
 function shuffle(array) {
   let currentIndex = array.length;
@@ -51,14 +48,21 @@ function shuffle(array) {
 }
 
 //récupération du board
-const board = document.querySelector("#board");
+let board = document.querySelector("#board");
+
+//création d'une fonction pour lancer la partie
+function startGame() {
+  //vider le board existant
+  board.innerHTML = "";
+
+  //création des variables de choix
+  let firstChoice = null;
+  let secondChoice = null;
+  let cardFoundNumber = 0;
+}
 
 //mélange des cartes
 shuffle(emojis);
-
-//création des variables de choix
-let firstChoice = null;
-let secondChoice = null;
 
 //boucle pour la création des cartes
 emojis.forEach((emoji) => {
@@ -117,7 +121,7 @@ emojis.forEach((emoji) => {
           document.body.appendChild(winScreen);
           const restartButton = document.createElement("button");
           restartButton.id = "restart-button";
-          restartButton.textContent = "Restart";
+          restartButton.textContent = "Rejouer";
           document.getElementById("win-alert").appendChild(restartButton);
         }
       } else {
