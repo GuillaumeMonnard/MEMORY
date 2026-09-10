@@ -2,28 +2,28 @@
 const emojis = [
   "👄",
   "🧚‍♀️",
-  "💩",
-  "🐢",
-  "🤡",
-  "👁️",
-  "🐤",
-  "🙊",
-  "🌽",
-  "🌵",
-  "🌻",
-  "🐝",
+  // "💩",
+  // "🐢",
+  // "🤡",
+  // "👁️",
+  // "🐤",
+  // "🙊",
+  // "🌽",
+  // "🌵",
+  // "🌻",
+  // "🐝",
   "👄",
   "🧚‍♀️",
-  "💩",
-  "🐢",
-  "🤡",
-  "👁️",
-  "🐤",
-  "🙊",
-  "🌽",
-  "🌵",
-  "🌻",
-  "🐝",
+  // "💩",
+  // "🐢",
+  // "🤡",
+  // "👁️",
+  // "🐤",
+  // "🙊",
+  // "🌽",
+  // "🌵",
+  // "🌻",
+  // "🐝",
 ];
 
 //nombre de paires
@@ -115,7 +115,10 @@ emojis.forEach((emoji) => {
           winScreen.id = "win-alert";
           winScreen.textContent = "TU AS GAGNÉ MON CHAMPIONS BRAVOOOOOOOO!";
           document.body.appendChild(winScreen);
-          console.log("TU AS GAGNÉ MON CHAMPION");
+          const restartButton = document.createElement("button");
+          restartButton.id = "restart-button";
+          restartButton.textContent = "Restart";
+          document.getElementById("win-alert").appendChild(restartButton);
         }
       } else {
         //Si elles sont différentes
