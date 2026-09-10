@@ -77,6 +77,8 @@ emojis.forEach((emoji) => {
       card.classList.remove("hidden");
       //style de bouton pressé
       card.classList.add("pressed");
+      //style de carte active
+      card.classList.add("active");
     } else if (secondChoice === null) {
       //on attribue la carte actuelle à secondChoice
       secondChoice = card;
@@ -84,15 +86,28 @@ emojis.forEach((emoji) => {
       card.classList.remove("hidden");
       //style de bouton pressé
       card.classList.add("pressed");
+      //style de carte active
+      card.classList.add("active");
     } else {
+      //vérification des deux cartes
+      //Si les cartes ont le même symbole
       if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
+        //on atctive les cartes
+        firstChoice.classList.remove("active");
+        secondChoice.classList.remove("active");
         firstChoice = null;
         secondChoice = null;
       } else {
+        //Si elles sont différentes
+        //on les caches
         firstChoice.classList.add("hidden");
         secondChoice.classList.add("hidden");
+        //on enleve le style de bouton pressé
         firstChoice.classList.remove("pressed");
         secondChoice.classList.remove("pressed");
+        //on désactive les cartes
+        firstChoice.classList.remove("active");
+        secondChoice.classList.remove("active");
         firstChoice = null;
         secondChoice = null;
       }

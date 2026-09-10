@@ -30,4 +30,8 @@
     transform: translateY(10px);
     box-shadow: 0 0 0 0 #000080;
   }
+
+  &.active {
+    border: solid 2px red($color: #000000);
+  }
 }
