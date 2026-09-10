@@ -55,86 +55,94 @@ function startGame() {
   //vider le board existant
   board.innerHTML = "";
 
+  // //supprimer l'alerte de fin de partie SI il y en a un qui existe
+  const existingWinScreen = document.getElementById("win-alert");
+  if (existingWinScreen) {
+    existingWinScreen.remove();
+  }
+
   //création des variables de choix
   let firstChoice = null;
   let secondChoice = null;
   let cardFoundNumber = 0;
-}
 
-//mélange des cartes
-shuffle(emojis);
+  //mélange des cartes
+  shuffle(emojis);
+  //boucle pour la création des cartes
+  emojis.forEach((emoji) => {
+    //création d'un carte
+    const card = document.createElement("div");
 
-//boucle pour la création des cartes
-emojis.forEach((emoji) => {
-  //création d'un carte
-  const card = document.createElement("div");
+    //lien entre la carte et le style .card et .hidden
+    card.classList.add("card", "hidden");
 
-  //lien entre la carte et le style .card et .hidden
-  card.classList.add("card", "hidden");
+    //lien entre le dataset.emoji et les attribut css
+    card.dataset.emoji = emoji;
 
-  //lien entre le dataset.emoji et les attribut css
-  card.dataset.emoji = emoji;
-
-  //ajout de la carte au board
-  board.appendChild(card);
-  //retourner la carte au click
-  card.addEventListener("click", function () {
-    //condition: si firstChoice n'a pas encore de carte assignée
-    if (firstChoice === null) {
-      //on attibue la carte actuelle à firstChoice
-      firstChoice = card;
-      //et on la révèle
-      card.classList.remove("hidden");
-      //style de carte active
-      card.classList.add("active");
-    } else if (secondChoice === null) {
-      //on vérifie si la carte a déjà la classe active
-      if (card.classList.contains("active")) {
-        //si oui, on ne fait rien
-      } else {
-        //si non on peut activer la deuxième carte
-        //on attribue la carte actuelle à secondChoice
-        secondChoice = card;
+    //ajout de la carte au board
+    board.appendChild(card);
+    //retourner la carte au click
+    card.addEventListener("click", function () {
+      //condition: si firstChoice n'a pas encore de carte assignée
+      if (firstChoice === null) {
+        //on attibue la carte actuelle à firstChoice
+        firstChoice = card;
         //et on la révèle
         card.classList.remove("hidden");
         //style de carte active
         card.classList.add("active");
-      }
-    } else {
-      //vérification des deux cartes
-      //Si les cartes ont le même symbole
-      if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
-        //on active les cartes
-        firstChoice.classList.remove("active");
-        secondChoice.classList.remove("active");
-        //on fait en sorte de ne plus pouvoir sélectionner ces cartes, car elles sont hors du jeu
-        firstChoice.classList.add("found");
-        secondChoice.classList.add("found");
-        firstChoice = null;
-        secondChoice = null;
-        //vérifier s'il reste des cartes
-        cardFoundNumber = document.querySelectorAll(".found").length / 2;
-        if (cardFoundNumber === cardNumber) {
-          const winScreen = document.createElement("div");
-          winScreen.id = "win-alert";
-          winScreen.textContent = "TU AS GAGNÉ MON CHAMPIONS BRAVOOOOOOOO!";
-          document.body.appendChild(winScreen);
-          const restartButton = document.createElement("button");
-          restartButton.id = "restart-button";
-          restartButton.textContent = "Rejouer";
-          document.getElementById("win-alert").appendChild(restartButton);
+      } else if (secondChoice === null) {
+        //on vérifie si la carte a déjà la classe active
+        if (card.classList.contains("active")) {
+          //si oui, on ne fait rien
+        } else {
+          //si non on peut activer la deuxième carte
+          //on attribue la carte actuelle à secondChoice
+          secondChoice = card;
+          //et on la révèle
+          card.classList.remove("hidden");
+          //style de carte active
+          card.classList.add("active");
         }
       } else {
-        //Si elles sont différentes
-        //on les caches
-        firstChoice.classList.add("hidden");
-        secondChoice.classList.add("hidden");
-        //on désactive les cartes
-        firstChoice.classList.remove("active");
-        secondChoice.classList.remove("active");
-        firstChoice = null;
-        secondChoice = null;
+        //vérification des deux cartes
+        //Si les cartes ont le même symbole
+        if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
+          //on active les cartes
+          firstChoice.classList.remove("active");
+          secondChoice.classList.remove("active");
+          //on fait en sorte de ne plus pouvoir sélectionner ces cartes, car elles sont hors du jeu
+          firstChoice.classList.add("found");
+          secondChoice.classList.add("found");
+          firstChoice = null;
+          secondChoice = null;
+          //vérifier s'il reste des cartes
+          cardFoundNumber = document.querySelectorAll(".found").length / 2;
+          if (cardFoundNumber === cardNumber) {
+            const winScreen = document.createElement("div");
+            winScreen.id = "win-alert";
+            winScreen.textContent = "TU AS GAGNÉ MON CHAMPIONS BRAVOOOOOOOO!";
+            document.body.appendChild(winScreen);
+            const restartButton = document.createElement("button");
+            restartButton.id = "restart-button";
+            restartButton.textContent = "Rejouer";
+            document.getElementById("win-alert").appendChild(restartButton);
+            restartButton.addEventListener("click", startGame);
+          }
+        } else {
+          //Si elles sont différentes
+          //on les caches
+          firstChoice.classList.add("hidden");
+          secondChoice.classList.add("hidden");
+          //on désactive les cartes
+          firstChoice.classList.remove("active");
+          secondChoice.classList.remove("active");
+          firstChoice = null;
+          secondChoice = null;
+        }
       }
-    }
+    });
   });
-});
+}
+
+startGame();
