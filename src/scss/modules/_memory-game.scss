@@ -43,9 +43,11 @@
 }
 
 #win-alert {
-  position: relative;
+  position: absolute;
   border-radius: 20px;
   font-size: 2rem;
   color: black;
+  background-color: white;
+  border: 3px darkblue solid;
   padding: 20px;
 }
