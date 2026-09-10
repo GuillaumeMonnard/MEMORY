@@ -94,9 +94,12 @@ emojis.forEach((emoji) => {
       //vérification des deux cartes
       //Si les cartes ont le même symbole
       if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
-        //on atctive les cartes
+        //on active les cartes
         firstChoice.classList.remove("active");
         secondChoice.classList.remove("active");
+        //on fait en sorte de ne plus pouvoir sélectionner ces cartes, car elles sont hors du jeu
+        firstChoice.classList.add("found");
+        secondChoice.classList.add("found");
         firstChoice = null;
         secondChoice = null;
       } else {

@@ -23,6 +23,10 @@
     transform: translate(-50%, -50%);
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &.hidden {
     background-color: lightblue;
   }
@@ -30,5 +34,10 @@
   &.active {
     border: solid 2px red;
     box-shadow: 0px 10px 0px 0px red;
+  }
+
+  &.found {
+    cursor: default;
+    pointer-events: none;
   }
 }
