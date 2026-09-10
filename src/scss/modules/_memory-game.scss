@@ -41,3 +41,11 @@
     pointer-events: none;
   }
 }
+
+#win-alert {
+  position: relative;
+  border-radius: 20px;
+  font-size: 2rem;
+  color: black;
+  padding: 20px;
+}

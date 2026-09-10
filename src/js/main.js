@@ -111,6 +111,10 @@ emojis.forEach((emoji) => {
         //vérifier s'il reste des cartes
         cardFoundNumber = document.querySelectorAll(".found").length / 2;
         if (cardFoundNumber === cardNumber) {
+          const winScreen = document.createElement("div");
+          winScreen.id = "win-alert";
+          winScreen.textContent = "TU AS GAGNÉ MON CHAMPIONS BRAVOOOOOOOO!";
+          document.body.appendChild(winScreen);
           console.log("TU AS GAGNÉ MON CHAMPION");
         }
       } else {
