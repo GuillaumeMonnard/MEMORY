@@ -75,12 +75,14 @@ emojis.forEach((emoji) => {
       firstChoice = card;
       //et on la révèle
       card.classList.remove("hidden");
+      //style de bouton pressé
       card.classList.add("pressed");
     } else if (secondChoice === null) {
       //on attribue la carte actuelle à secondChoice
       secondChoice = card;
       //et on la révèle
       card.classList.remove("hidden");
+      //style de bouton pressé
       card.classList.add("pressed");
     } else {
       if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
