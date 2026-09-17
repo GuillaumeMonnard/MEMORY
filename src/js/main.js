@@ -4,26 +4,18 @@ const emojis = [
   "/",
   "=",
   "★",
-  // "✦",
-  // "♠",
-  // "∏",
-  // "⊞",
-  // "🌽",
-  // "🌵",
-  // "🌻",
-  // "🐝",
+  "✦",
+  "♠",
+  "∏",
+  "⊞",
   "#",
   "/",
   "=",
   "★",
-  // "✦",
-  // "♠",
-  // "∏",
-  // "⊞",
-  // "🌽",
-  // "🌵",
-  // "🌻",
-  // "🐝",
+  "✦",
+  "♠",
+  "∏",
+  "⊞",
 ];
 
 //nombre de cartes
@@ -39,12 +31,10 @@ if (Number.isInteger(squareRoot)) {
   const gridRowsColumns = squareRoot;
   grid.style.gridTemplateRows = "repeat(" + gridRowsColumns + ", 1fr)";
   grid.style.gridTemplateColumns = "repeat(" + gridRowsColumns + ", 1fr)";
-  console.log("repeat(" + gridRowsColumns + ", 1fr)");
 } else {
   const gridRowsColumns = Math.ceil(squareRoot);
   grid.style.gridTemplateRows = "repeat(" + gridRowsColumns + ", 1fr)";
   grid.style.gridTemplateColumns = "repeat(" + gridRowsColumns + ", 1fr)";
-  console.log("repeat(" + gridRowsColumns + ", 1fr)");
 }
 
 //nombre de paires
