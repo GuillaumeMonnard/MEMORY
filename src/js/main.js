@@ -18,6 +18,9 @@ const emojis = [
   "⊞",
 ];
 
+//ajout d'un compteur de coup
+let count = 0;
+
 //nombre de cartes
 const cardNumber = emojis.length;
 
@@ -65,6 +68,7 @@ let board = document.querySelector("#board");
 function startGame() {
   //vider le board existant
   board.innerHTML = "";
+  count = 0;
 
   // //supprimer l'alerte de fin de partie SI il y en a un qui existe
   const existingWinScreen = document.getElementById("win-alert");
@@ -127,12 +131,13 @@ function startGame() {
           secondChoice.classList.add("found");
           firstChoice = null;
           secondChoice = null;
+          count += 1;
           //vérifier s'il reste des cartes
           pairsFoundNumber = document.querySelectorAll(".found").length / 2;
           if (pairsFoundNumber === pairsNumber) {
             const winScreen = document.createElement("div");
             winScreen.id = "win-alert";
-            winScreen.textContent = "TU AS GAGNÉ MON CHAMPIONS BRAVOOOOOOOO!";
+            winScreen.textContent = "Win en: " + count + " coups. Chacal.";
             document.body.appendChild(winScreen);
             const restartButton = document.createElement("button");
             restartButton.id = "restart-button";
@@ -150,6 +155,7 @@ function startGame() {
           secondChoice.classList.remove("active");
           firstChoice = null;
           secondChoice = null;
+          count += 1;
         }
       }
     });

@@ -41,6 +41,9 @@
 
 #win-alert {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   border-radius: 20px;
   font-size: 2rem;
   color: black;
