@@ -1,6 +1,6 @@
 #board {
-  width: 800px;
-  height: 800px;
+  width: 400px;
+  height: 400px;
   background-color: black;
   margin: 0 auto;
   display: grid;
@@ -9,7 +9,7 @@
 
 .card {
   position: relative;
-  border: dashed 2px white;
+  border: dotted 2px white;
   border-radius: 20px;
   font-size: 40px;
 
@@ -30,7 +30,7 @@
   }
 
   &.active {
-    border: dashed 2px lightcoral;
+    border: dotted 2px lightcoral;
   }
 
   &.found {
@@ -45,7 +45,6 @@
   font-size: 2rem;
   color: black;
   background-color: white;
-  border: 3px darkblue solid;
   padding: 20px;
 }
 
