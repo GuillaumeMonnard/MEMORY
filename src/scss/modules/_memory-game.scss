@@ -1,6 +1,6 @@
 #board {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background-color: black;
   margin: 0 auto;
   display: grid;
@@ -10,8 +10,7 @@
 .card {
   position: relative;
   border: dotted 2px white;
-  border-radius: 20px;
-  font-size: 40px;
+  font-size: 2rem;
 
   &:not(.hidden)::after {
     content: attr(data-emoji);
