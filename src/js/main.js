@@ -26,8 +26,15 @@ const emojis = [
   // "🐝",
 ];
 
+//définition de la taille de la grille en fonction du nombre de carte
+let gridSize = 0;
+const grid = document.getElementById("board");
+
+//nombre de carde
+const cardNumber = emojis.length;
+
 //nombre de paires
-const cardNumber = emojis.length / 2;
+const pairsNumber = emojis.length / 2;
 
 //fonction de mélange aléatoire
 function shuffle(array) {
@@ -117,8 +124,8 @@ function startGame() {
           firstChoice = null;
           secondChoice = null;
           //vérifier s'il reste des cartes
-          cardFoundNumber = document.querySelectorAll(".found").length / 2;
-          if (cardFoundNumber === cardNumber) {
+          pairsFoundNumber = document.querySelectorAll(".found").length / 2;
+          if (pairsFoundNumber === pairsNumber) {
             const winScreen = document.createElement("div");
             winScreen.id = "win-alert";
             winScreen.textContent = "TU AS GAGNÉ MON CHAMPIONS BRAVOOOOOOOO!";
