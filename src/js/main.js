@@ -26,12 +26,24 @@ const emojis = [
   // "🐝",
 ];
 
+//nombre de cartes
+const cardNumber = emojis.length;
+
+//racine carrée du nombre de carte
+const squareRoot = Math.sqrt(cardNumber);
+
 //définition de la taille de la grille en fonction du nombre de carte
 let gridSize = 0;
 const grid = document.getElementById("board");
-
-//nombre de carde
-const cardNumber = emojis.length;
+if (Number.isInteger(squareRoot)) {
+  const gridRowsColumns = squareRoot;
+  grid.style.gridTemplateRows = "repeat(" + gridRowsColumns + ", 1fr)";
+  grid.style.gridTemplateColumns = "repeat(" + gridRowsColumns + ", 1fr)";
+} else {
+  const gridRowsColumns = Math.round(squareRoot);
+  grid.style.gridTemplateRows = "repeat(" + gridRowsColumns + ", 1fr)";
+  grid.style.gridTemplateColumns = "repeat(" + gridRowsColumns + ", 1fr)";
+}
 
 //nombre de paires
 const pairsNumber = emojis.length / 2;
