@@ -13,7 +13,7 @@
   font-size: 2rem;
 
   &:not(.hidden)::after {
-    content: attr(data-emoji);
+    content: attr(data-symbole);
     position: absolute;
     top: 50%;
     left: 50%;
