@@ -152,6 +152,32 @@ function startGame() {
     }
   }
 
+  board.addEventListener("keydown", function (e) {
+    const key = e.key;
+
+    if (key === "Enter" || key === " ") {
+      e.preventDefault();
+      selectCard(cardElement);
+    }
+
+    let newIndex = activeIndex;
+
+    if (key === "ArrowRight") newIndex++;
+    else if (key === "ArrowLeft") newIndex--;
+    else if (key === "ArrowDown") newIndex += gridColumns;
+    else if (key === "ArrowUp") newIndex -= gridColumns;
+    else return;
+
+    e.preventDefault();
+
+    if (newIndex >= 0 && newIndex < cardElement.length) {
+      cardElement[activeIndex].setAttribute("tabindex", "-1");
+      activeIndex = newIndex;
+      cardelement[activeIndex].setAttribute("tabindex", "0");
+      cardElement[activeIndex].focus();
+    }
+  });
+
   //boucle pour la création des cartes
   symboles.forEach((symbole, index) => {
     //création d'un carte
