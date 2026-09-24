@@ -30,17 +30,13 @@ const cardNumber = symboles.length;
 const squareRoot = Math.sqrt(cardNumber);
 
 //définition de la taille de la grille en fonction du nombre de carte
-let gridSize = 0;
 const grid = document.getElementById("board");
-if (Number.isInteger(squareRoot)) {
-  const gridRowsColumns = squareRoot;
-  grid.style.gridTemplateRows = "repeat(" + gridRowsColumns + ", 1fr)";
-  grid.style.gridTemplateColumns = "repeat(" + gridRowsColumns + ", 1fr)";
-} else {
-  const gridRowsColumns = Math.ceil(squareRoot);
-  grid.style.gridTemplateRows = "repeat(" + gridRowsColumns + ", 1fr)";
-  grid.style.gridTemplateColumns = "repeat(" + gridRowsColumns + ", 1fr)";
-}
+let gridColumns = Number.isInteger(squareRoot)
+  ? squareRoot
+  : Math.ceil(squareRoot);
+
+grid.style.gridTemplateRows = "repeat(" + gridColumns + ", 1fr)";
+grid.style.gridTemplateColumns = "repeat(" + gridColumns + ", 1fr)";
 
 //nombre de paires
 const pairsNumber = symboles.length / 2;
