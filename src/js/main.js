@@ -86,6 +86,72 @@ function startGame() {
 
   //mélange des cartes
   shuffle(symboles);
+
+  //création de la fonction de sélection de carte
+  //placée ICI, avant le forEach, pour rester accessible dans tout startGame
+  function selectCard(card) {
+    //condition: si firstChoice n'a pas encore de carte assignée
+    if (firstChoice === null) {
+      //on attibue la carte actuelle à firstChoice
+      firstChoice = card;
+      //et on la révèle
+      card.classList.remove("hidden");
+      //style de carte active
+      card.classList.add("active");
+    } else if (secondChoice === null) {
+      //on vérifie si la carte a déjà la classe active
+      if (card.classList.contains("active")) {
+        //si oui, on ne fait rien
+      } else {
+        //si non on peut activer la deuxième carte
+        //on attribue la carte actuelle à secondChoice
+        secondChoice = card;
+        //et on la révèle
+        card.classList.remove("hidden");
+        //style de carte active
+        card.classList.add("active");
+      }
+    } else {
+      //vérification des deux cartes
+      //Si les cartes ont le même symbole
+      if (firstChoice.dataset.symbole === secondChoice.dataset.symbole) {
+        //on active les cartes
+        firstChoice.classList.remove("active");
+        secondChoice.classList.remove("active");
+        //on fait en sorte de ne plus pouvoir sélectionner ces cartes, car elles sont hors du jeu
+        firstChoice.classList.add("found");
+        secondChoice.classList.add("found");
+        firstChoice = null;
+        secondChoice = null;
+        count += 1;
+        //vérifier s'il reste des cartes
+        pairsFoundNumber = document.querySelectorAll(".found").length / 2;
+        if (pairsFoundNumber === pairsNumber) {
+          const winScreen = document.createElement("div");
+          winScreen.id = "win-alert";
+          winScreen.textContent = "Win en: " + count + " coups. Chacal.";
+          document.body.appendChild(winScreen);
+          const restartButton = document.createElement("button");
+          restartButton.id = "restart-button";
+          restartButton.textContent = "Rejouer";
+          document.getElementById("win-alert").appendChild(restartButton);
+          restartButton.addEventListener("click", startGame);
+        }
+      } else {
+        //Si elles sont différentes
+        //on les caches
+        firstChoice.classList.add("hidden");
+        secondChoice.classList.add("hidden");
+        //on désactive les cartes
+        firstChoice.classList.remove("active");
+        secondChoice.classList.remove("active");
+        firstChoice = null;
+        secondChoice = null;
+        count += 1;
+      }
+    }
+  }
+
   //boucle pour la création des cartes
   symboles.forEach((symbole, index) => {
     //création d'un carte
@@ -101,53 +167,15 @@ function startGame() {
     //ajout de la carte au board
     board.appendChild(card);
     cardElement.push(card);
+
     //retourner la carte au click
-    function selectCard(card) {
-      if (firstChoice === null) {
-        firstChoice = card;
-        card.classList.remove("hidden");
-        card.classList.add("active");
-      } else if (secondChoice === null) {
-        if (card.classList.contains("active")) {
-          // rien
-        } else {
-          secondChoice = card;
-          card.classList.remove("hidden");
-          card.classList.add("active");
-        }
-      } else {
-        if (firstChoice.dataset.symbole === secondChoice.dataset.symbole) {
-          firstChoice.classList.remove("active");
-          secondChoice.classList.remove("active");
-          firstChoice.classList.add("found");
-          secondChoice.classList.add("found");
-          firstChoice = null;
-          secondChoice = null;
-          count += 1;
-          pairsFoundNumber = document.querySelectorAll(".found").length / 2;
-          if (pairsFoundNumber === pairsNumber) {
-            const winScreen = document.createElement("div");
-            winScreen.id = "win-alert";
-            winScreen.textContent = "Win en: " + count + " coups. Chacal.";
-            document.body.appendChild(winScreen);
-            const restartButton = document.createElement("button");
-            restartButton.id = "restart-button";
-            restartButton.textContent = "Rejouer";
-            document.getElementById("win-alert").appendChild(restartButton);
-            restartButton.addEventListener("click", startGame);
-          }
-        } else {
-          firstChoice.classList.add("hidden");
-          secondChoice.classList.add("hidden");
-          firstChoice.classList.remove("active");
-          secondChoice.classList.remove("active");
-          firstChoice = null;
-          secondChoice = null;
-          count += 1;
-        }
-      }
-    }
+    //reste DANS le forEach car "card" n'existe que le temps d'un tour de boucle
+    card.addEventListener("click", function () {
+      selectCard(card);
+    });
   });
+
+  //l'étape 7 (le clavier) viendra juste ici, une fois ce code testé
 }
 
 startGame();
