@@ -79,6 +79,11 @@ function startGame() {
   let secondChoice = null;
   let cardFoundNumber = 0;
 
+  //création d'un tableau d'index pour les carte
+  let cardElement = [];
+  //activeIndex retient l'index de la carte active
+  let activeIndex = 0;
+
   //mélange des cartes
   shuffle(symboles);
   //boucle pour la création des cartes
@@ -94,6 +99,7 @@ function startGame() {
 
     //ajout de la carte au board
     board.appendChild(card);
+
     //retourner la carte au click
     card.addEventListener("click", function () {
       //condition: si firstChoice n'a pas encore de carte assignée
