@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 //tableau des symboles
 const symboles = [
   "A",
