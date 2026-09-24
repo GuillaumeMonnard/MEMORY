@@ -157,7 +157,7 @@ function startGame() {
 
     if (key === "Enter" || key === " ") {
       e.preventDefault();
-      selectCard(cardElement);
+      selectCard(cardElement[activeIndex]);
     }
 
     let newIndex = activeIndex;
