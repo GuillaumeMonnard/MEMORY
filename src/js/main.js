@@ -1,5 +1,5 @@
-//tableau des emojis
-const emojis = [
+//tableau des symboles
+const symboles = [
   "A",
   "B",
   "C",
@@ -22,7 +22,7 @@ const emojis = [
 let count = 0;
 
 //nombre de cartes
-const cardNumber = emojis.length;
+const cardNumber = symboles.length;
 
 //racine carrée du nombre de carte
 const squareRoot = Math.sqrt(cardNumber);
@@ -41,7 +41,7 @@ if (Number.isInteger(squareRoot)) {
 }
 
 //nombre de paires
-const pairsNumber = emojis.length / 2;
+const pairsNumber = symboles.length / 2;
 
 //fonction de mélange aléatoire
 function shuffle(array) {
@@ -82,9 +82,9 @@ function startGame() {
   let cardFoundNumber = 0;
 
   //mélange des cartes
-  shuffle(emojis);
+  shuffle(symboles);
   //boucle pour la création des cartes
-  emojis.forEach((emoji) => {
+  symboles.forEach((emoji) => {
     //création d'un carte
     const card = document.createElement("div");
 
