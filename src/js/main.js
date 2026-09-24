@@ -84,15 +84,15 @@ function startGame() {
   //mélange des cartes
   shuffle(symboles);
   //boucle pour la création des cartes
-  symboles.forEach((emoji) => {
+  symboles.forEach((symbole) => {
     //création d'un carte
     const card = document.createElement("div");
 
     //lien entre la carte et le style .card et .hidden
     card.classList.add("card", "hidden");
 
-    //lien entre le dataset.emoji et les attribut css
-    card.dataset.emoji = emoji;
+    //lien entre le dataset.symbole et les attribut css
+    card.dataset.symbole = symbole;
 
     //ajout de la carte au board
     board.appendChild(card);
@@ -122,7 +122,7 @@ function startGame() {
       } else {
         //vérification des deux cartes
         //Si les cartes ont le même symbole
-        if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
+        if (firstChoice.dataset.symbole === secondChoice.dataset.symbole) {
           //on active les cartes
           firstChoice.classList.remove("active");
           secondChoice.classList.remove("active");
