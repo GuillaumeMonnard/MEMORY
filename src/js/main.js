@@ -94,8 +94,13 @@ function startGame() {
     card.classList.add("card", "hidden");
     //lien entre le dataset.symbole et les attribut css
     card.dataset.symbole = symbole;
+    card.dataset.index = index;
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", index === 0 ? "0" : "-1");
+
     //ajout de la carte au board
     board.appendChild(card);
+    cardElement.push(card);
     //retourner la carte au click
     function selectCard(card) {
       if (firstChoice === null) {
