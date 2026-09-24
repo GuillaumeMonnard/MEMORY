@@ -173,7 +173,7 @@ function startGame() {
     if (newIndex >= 0 && newIndex < cardElement.length) {
       cardElement[activeIndex].setAttribute("tabindex", "-1");
       activeIndex = newIndex;
-      cardelement[activeIndex].setAttribute("tabindex", "0");
+      cardElement[activeIndex].setAttribute("tabindex", "0");
       cardElement[activeIndex].focus();
     }
   });
