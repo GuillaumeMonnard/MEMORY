@@ -172,7 +172,7 @@ function startGame() {
     });
   });
 
-  //l'étape 7 (le clavier) viendra juste ici, une fois ce code testé
+  //Utilisation du clavier pour se déplacer dans la grille
   board.addEventListener("keydown", function (e) {
     const key = e.key;
 
@@ -199,5 +199,35 @@ function startGame() {
     }
   });
 }
+
+//variables pour le terminal
+const output = document.getElementById("output");
+const typedElement = document.getElementById("typed");
+const promptElement = document.getElementById("prompt");
+
+//texte en cours de saisie
+let buffer = "";
+//interrupteur, tant qu'il est false, on est dans le terminal
+let gameStarted = false;
+//tableau qui garde les commandes déjà tapées et index
+const history = [];
+let historyIndex = 0;
+
+//création de la fonction de print
+function print(text) {
+  const p = document.createElement("p");
+  p.textContent = text;
+  output.appendChild(p);
+}
+
+//création des commandes disponibles dans le terminal
+const commands = {
+  startgame() {
+    //interrupteur true, on ne capte plus le clavier pour écrire dans le terminal
+    gameStarted = true;
+    promptElement.hidden = true;
+    print("-> launching game...");
+  },
+};
 
 startGame();
