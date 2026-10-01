@@ -102,6 +102,8 @@ function startGame() {
       //on vérifie si la carte a déjà la classe active
       if (card.classList.contains("active")) {
         //si oui, on ne fait rien
+      } else if (card.classList.contains("found")) {
+        //si carte déjà trouvée, alors on ne fait rien
       } else {
         //si non on peut activer la deuxième carte
         //on attribue la carte actuelle à secondChoice
