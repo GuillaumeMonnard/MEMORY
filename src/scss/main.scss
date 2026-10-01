@@ -6,11 +6,17 @@
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
-  gap: 20px;
-  background-color: black;
+  gap: 0.4rem;
+  padding: 20;
+  background-color: #1524f2;
   color: white;
 
-  font-family: "Cascadia Code";
+  font-family: "input mono", monospace;
+}
+
+p {
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
