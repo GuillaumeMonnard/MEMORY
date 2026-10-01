@@ -92,12 +92,16 @@ function startGame() {
   function selectCard(card) {
     //condition: si firstChoice n'a pas encore de carte assignée
     if (firstChoice === null) {
-      //on attibue la carte actuelle à firstChoice
-      firstChoice = card;
-      //et on la révèle
-      card.classList.remove("hidden");
-      //style de carte active
-      card.classList.add("active");
+      if (card.classList.contains("found")) {
+        //si la carte a déjà été trouvée, alors on ne fait rien
+      } else {
+        //on attibue la carte actuelle à firstChoice
+        firstChoice = card;
+        //et on la révèle
+        card.classList.remove("hidden");
+        //style de carte active
+        card.classList.add("active");
+      }
     } else if (secondChoice === null) {
       //on vérifie si la carte a déjà la classe active
       if (card.classList.contains("active")) {
