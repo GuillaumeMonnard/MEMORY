@@ -89,73 +89,64 @@ function startGame() {
 
   //création de la fonction de sélection de carte
   //placée ICI, avant le forEach, pour rester accessible dans tout startGame
+  let locked = false; // à déclarer avec firstChoice et secondChoice
+
   function selectCard(card) {
-    //condition: si firstChoice n'a pas encore de carte assignée
+    //si le jeu est bloqué (pendant l'affichage d'une mauvaise paire), on ne fait rien
+    if (locked) return;
+    //si la carte a déjà été trouvée, on ne fait rien
+    if (card.classList.contains("found")) return;
+    //si la carte est déjà retournée, on ne fait rien
+    if (card.classList.contains("active")) return;
+
+    //on révèle la carte
+    card.classList.remove("hidden");
+    card.classList.add("active");
+
     if (firstChoice === null) {
-      if (card.classList.contains("found")) {
-        //si la carte a déjà été trouvée, alors on ne fait rien
-      } else {
-        //on attibue la carte actuelle à firstChoice
-        firstChoice = card;
-        //et on la révèle
-        card.classList.remove("hidden");
-        //style de carte active
-        card.classList.add("active");
-      }
-    } else if (secondChoice === null) {
-      //on vérifie si la carte a déjà la classe active
-      if (card.classList.contains("active")) {
-        //si oui, on ne fait rien
-      } else if (card.classList.contains("found")) {
-        //si carte déjà trouvée, alors on ne fait rien
-      } else {
-        //si non on peut activer la deuxième carte
-        //on attribue la carte actuelle à secondChoice
-        secondChoice = card;
-        //et on la révèle
-        card.classList.remove("hidden");
-        //style de carte active
-        card.classList.add("active");
+      //première carte : on la retient
+      firstChoice = card;
+      return;
+    }
+
+    //deuxième carte : on vérifie tout de suite
+    secondChoice = card;
+    count += 1;
+
+    if (firstChoice.dataset.symbole === secondChoice.dataset.symbole) {
+      //même symbole : on désactive et on met hors jeu
+      firstChoice.classList.remove("active");
+      secondChoice.classList.remove("active");
+      firstChoice.classList.add("found");
+      secondChoice.classList.add("found");
+      firstChoice = null;
+      secondChoice = null;
+
+      //vérifier s'il reste des cartes
+      const pairsFoundNumber = document.querySelectorAll(".found").length / 2;
+      if (pairsFoundNumber === pairsNumber) {
+        const winScreen = document.createElement("div");
+        winScreen.id = "win-alert";
+        winScreen.textContent = "Win en: " + count + " coups. Chacal.";
+        document.body.appendChild(winScreen);
+        const restartButton = document.createElement("button");
+        restartButton.id = "restart-button";
+        restartButton.textContent = "Rejouer";
+        winScreen.appendChild(restartButton);
+        restartButton.addEventListener("click", startGame);
       }
     } else {
-      //vérification des deux cartes
-      //Si les cartes ont le même symbole
-      if (firstChoice.dataset.symbole === secondChoice.dataset.symbole) {
-        //on désactive les cartes
-        firstChoice.classList.remove("active");
-        secondChoice.classList.remove("active");
-        //on fait en sorte de ne plus pouvoir sélectionner ces cartes, car elles sont hors du jeu
-        firstChoice.classList.add("found");
-        secondChoice.classList.add("found");
-        //on réinitialise les valeurs des variables de sélection de carte
-        firstChoice = null;
-        secondChoice = null;
-        count += 1;
-        //vérifier s'il reste des cartes
-        pairsFoundNumber = document.querySelectorAll(".found").length / 2;
-        if (pairsFoundNumber === pairsNumber) {
-          const winScreen = document.createElement("div");
-          winScreen.id = "win-alert";
-          winScreen.textContent = "Win en: " + count + " coups. Chacal.";
-          document.body.appendChild(winScreen);
-          const restartButton = document.createElement("button");
-          restartButton.id = "restart-button";
-          restartButton.textContent = "Rejouer";
-          document.getElementById("win-alert").appendChild(restartButton);
-          restartButton.addEventListener("click", startGame);
-        }
-      } else {
-        //Si elles sont différentes
-        //on les caches
+      //symboles différents : on bloque, on laisse voir 800 ms, puis on cache
+      locked = true;
+      setTimeout(function () {
         firstChoice.classList.add("hidden");
         secondChoice.classList.add("hidden");
-        //on désactive les cartes
         firstChoice.classList.remove("active");
         secondChoice.classList.remove("active");
         firstChoice = null;
         secondChoice = null;
-        count += 1;
-      }
+        locked = false;
+      }, 800);
     }
   }
 
