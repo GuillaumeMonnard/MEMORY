@@ -228,6 +228,14 @@ const commands = {
     promptElement.hidden = true;
     print("-> launching game...");
   },
+  help() {
+    //afficher la liste des commandes
+    print("-> available commands: startgame, help, clear");
+  },
+  clear() {
+    //on efface tout le contenu du terminal
+    output.innerHTML = "";
+  },
 };
 
 startGame();
