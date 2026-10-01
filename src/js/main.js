@@ -130,8 +130,7 @@ function startGame() {
           "_________________________________________________________________________________________________";
         document.body.appendChild(separation);
         const winText = document.createElement("p");
-        winText.textContent =
-          "CONGRATS, You won in " + count + " moves, chacal.";
+        winText.textContent = "CONGRATS, You won in " + count + " moves.";
         document.body.appendChild(winText);
       }
     } else {
