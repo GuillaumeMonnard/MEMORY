@@ -198,6 +198,7 @@ function startGame() {
       cardElement[activeIndex].focus();
     }
   });
+  cardElement[0].focus();
 }
 
 //variables pour le terminal
@@ -227,6 +228,7 @@ const commands = {
     gameStarted = true;
     promptElement.hidden = true;
     print("-> launching game...");
+    startGame(); //lancement de la partie
   },
   help() {
     //afficher la liste des commandes
@@ -238,4 +240,61 @@ const commands = {
   },
 };
 
-startGame();
+//création de la fonction run, qui est appelée quand le joueur
+//appuie sur enter. input = texte écrit
+function run(input) {
+  //imprime la commande, comme dans un terminal
+  print("-> " + input.toUpperCase());
+  //nettoie la commande en enlevant les espaces autour et en mettant en minuscule
+  const name = input.trim().toLowerCase();
+
+  //condition: si l'utilisateur n'a rien écrit, on sort
+  if (name === "") return;
+
+  //ajout à l'historique pour le réutiliser plus tard avec haut/bas
+  history.push(name);
+  historyIndex = history.length;
+
+  //on va chercher la commande entrée et si elle existe on l'exécute
+  if (commands[name]) {
+    commands[name]();
+  } else {
+    print("-> command not found: " + name.toUpperCase());
+  }
+}
+
+//écouteur de touches pour le terminal
+document.addEventListener("keydown", (e) => {
+  //si la partie est déjà lancée, on ne fait rien
+  if (gameStarted) return;
+  //si on appuie sur entrée
+  if (e.key === "Enter") {
+    //on lance la commande ave run
+    run(buffer);
+    buffer = "";
+  }
+  //sinon, si on appuie sur backspace
+  else if (e.key === "Backspace") {
+    //on retire le dernier caractère
+    buffer = buffer.slice(0, -1);
+  }
+  //si ArrowUp
+  else if (e.key === "ArrowUp") {
+    //on empeche le comportement par défaut
+    e.preventDefault();
+    //si on est pas déjà tout en haut de l'hitorique, on recule d'un cran et on mets cette ancienne commade dans le buffer
+    if (historyIndex > 0) buffer = history[--historyIndex];
+  } else if (e.key === "ArrowDown") {
+    e.preventDefault();
+    //on avance d'un cran, mais math.min empêche de dépasser la fin de l'historique
+    historyIndex = Math.min(historyIndex + 1, history.length);
+    //on met la commande dans le buffer
+    buffer = history[historyIndex] || "";
+  } //caractère normal sans ctrl/cmd/alt -> on ajoute buffer
+  else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    buffer += e.key;
+  }
+
+  typedElement.textContent = buffer;
+  window.scrollTo(0, document.body.scrollHeight);
+});
