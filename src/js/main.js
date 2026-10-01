@@ -159,6 +159,30 @@ function startGame() {
     }
   }
 
+  //boucle pour la création des cartes
+  symboles.forEach((symbole, index) => {
+    //création d'un carte
+    const card = document.createElement("div");
+    //lien entre la carte et le style .card et .hidden
+    card.classList.add("card", "hidden");
+    //lien entre le dataset.symbole et les attribut css
+    card.dataset.symbole = symbole;
+    card.dataset.index = index;
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", index === 0 ? "0" : "-1");
+
+    //ajout de la carte au board
+    board.appendChild(card);
+    cardElement.push(card);
+
+    //retourner la carte au click
+    //reste DANS le forEach car "card" n'existe que le temps d'un tour de boucle
+    card.addEventListener("click", function () {
+      selectCard(card);
+    });
+  });
+
+  //l'étape 7 (le clavier) viendra juste ici, une fois ce code testé
   board.addEventListener("keydown", function (e) {
     const key = e.key;
 
@@ -184,31 +208,6 @@ function startGame() {
       cardElement[activeIndex].focus();
     }
   });
-
-  //boucle pour la création des cartes
-  symboles.forEach((symbole, index) => {
-    //création d'un carte
-    const card = document.createElement("div");
-    //lien entre la carte et le style .card et .hidden
-    card.classList.add("card", "hidden");
-    //lien entre le dataset.symbole et les attribut css
-    card.dataset.symbole = symbole;
-    card.dataset.index = index;
-    card.setAttribute("role", "button");
-    card.setAttribute("tabindex", index === 0 ? "0" : "-1");
-
-    //ajout de la carte au board
-    board.appendChild(card);
-    cardElement.push(card);
-
-    //retourner la carte au click
-    //reste DANS le forEach car "card" n'existe que le temps d'un tour de boucle
-    card.addEventListener("click", function () {
-      selectCard(card);
-    });
-  });
-
-  //l'étape 7 (le clavier) viendra juste ici, une fois ce code testé
 }
 
 startGame();
