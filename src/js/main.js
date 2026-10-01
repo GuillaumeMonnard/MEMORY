@@ -121,12 +121,13 @@ function startGame() {
       //vérification des deux cartes
       //Si les cartes ont le même symbole
       if (firstChoice.dataset.symbole === secondChoice.dataset.symbole) {
-        //on active les cartes
+        //on désactive les cartes
         firstChoice.classList.remove("active");
         secondChoice.classList.remove("active");
         //on fait en sorte de ne plus pouvoir sélectionner ces cartes, car elles sont hors du jeu
         firstChoice.classList.add("found");
         secondChoice.classList.add("found");
+        //on réinitialise les valeurs des variables de sélection de carte
         firstChoice = null;
         secondChoice = null;
         count += 1;
@@ -162,8 +163,8 @@ function startGame() {
     const key = e.key;
 
     if (key === "Enter" || key === " ") {
-      e.preventDefault();
-      selectCard(cardElement[activeIndex]);
+      e.preventDefault(); //empêche le comportement natif (espace fait défiler la page)
+      selectCard(cardElement[activeIndex]); //on appelle selectCard pour retourner la carte qui est en focus, même effet qu'au click
     }
 
     let newIndex = activeIndex;
