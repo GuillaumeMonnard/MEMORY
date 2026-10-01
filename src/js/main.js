@@ -125,15 +125,14 @@ function startGame() {
       //vérifier s'il reste des cartes
       const pairsFoundNumber = document.querySelectorAll(".found").length / 2;
       if (pairsFoundNumber === pairsNumber) {
-        const winScreen = document.createElement("div");
-        winScreen.id = "win-alert";
-        winScreen.textContent = "Win en: " + count + " coups. Chacal.";
-        document.body.appendChild(winScreen);
-        const restartButton = document.createElement("button");
-        restartButton.id = "restart-button";
-        restartButton.textContent = "Rejouer";
-        winScreen.appendChild(restartButton);
-        restartButton.addEventListener("click", startGame);
+        const separation = document.createElement("p");
+        separation.textContent =
+          "_________________________________________________________________________________________________";
+        document.body.appendChild(separation);
+        const winText = document.createElement("p");
+        winText.textContent =
+          "CONGRATS, You won in " + count + " moves, chacal.";
+        document.body.appendChild(winText);
       }
     } else {
       //symboles différents : on bloque, on laisse voir 800 ms, puis on cache
