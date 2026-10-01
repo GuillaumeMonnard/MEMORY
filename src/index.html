@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="https://use.typekit.net/jgv8ngy.css" />
   </head>
   <body>
-    <p>-> Last login: Thu Oct 1 08:26:58 on ttys000</p>
+    <div id="terminal">
+      <div id="output">
+        <p>-> last login: thu oct 1 08:26:58 on ttys000</p>
+        <p>-> type "startgame" to launch a game</p>
+      </div>
+      <p id="prompt">-> <span id="typed"></span><span id="cursor">|</span></p>
+    </div>
+    <!-- <p>-> Last login: Thu Oct 1 08:26:58 on ttys000</p>
     <p>-> type "startgame" to launch a game</p>
     <p>
       -> Use your keyboard arrows to navigate in the grid and press "Space" or
@@ -16,7 +23,7 @@
     </p>
     <p>
       _________________________________________________________________________________________________
-    </p>
+    </p> -->
     <div id="board"></div>
 
     <script src="js/main.js" type="module"></script>
