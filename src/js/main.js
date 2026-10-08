@@ -374,7 +374,7 @@ const commands = {
   help() {
     //afficher la liste des commandes
     print(
-      "-> available commands: hello, rules, howtoplay, startgame, contact, help, clear",
+      "-> available commands: hello, rules, howtoplay, startgame, contact, help, clear, exit",
     );
   },
 
