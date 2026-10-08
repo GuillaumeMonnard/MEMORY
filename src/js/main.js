@@ -304,7 +304,9 @@ const commands = {
   },
 
   rules() {
+    print("-> ");
     print("-> RULES");
+    print("----------------------------------------------------------");
     print("-> the board is full of face-down cards.");
     print("-> every card has an identical twin somewhere on the board.");
     print("-> flip two cards per turn. if they match, they stay revealed.");
@@ -314,7 +316,9 @@ const commands = {
   },
 
   howtoplay() {
+    print("-> ");
     print("-> HOW TO PLAY");
+    print("----------------------------------------------------------");
     print('-> 1. type "startgame" and press enter.');
     print("-> 2. click a card to flip it, or use the keyboard:");
     print("->    arrow keys = move between cards");
@@ -358,7 +362,9 @@ const commands = {
 
   help() {
     //afficher la liste des commandes
-    print("-> available commands: " + Object.keys(commands).join(", "));
+    print(
+      "-> available commands: hello, rules, howtoplay, startgame, contact, help, clear",
+    );
   },
 
   clear() {
