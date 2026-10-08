@@ -2,7 +2,7 @@
 @import "base";
 @import "layout";
 @import "modules/_memory-game";
-
+@import "modules/colors";
 body {
   display: flex;
   flex-direction: column;
@@ -10,8 +10,8 @@ body {
   justify-content: center;
   gap: 0.4rem;
   padding: 20;
-  background-color: #1524f2;
-  color: white;
+  background-color: var(--blue);
+  color: var(--white);
   text-transform: uppercase;
   font-size: 0.8rem;
 
