@@ -363,6 +363,13 @@ const commands = {
       document.body.innerHTML = "";
       document.body.style.backgroundColor = "black";
     }, 2000);
+
+    setTimeout(function () {
+      const thankYou = document.createElement("p");
+      thankYou.textContent =
+        "thank you for playing :) refresh the page to start again";
+      document.body.appendChild(thankYou);
+    }, 2001);
   },
 
   clear() {
