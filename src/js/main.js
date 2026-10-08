@@ -23,16 +23,13 @@ const symboles = [
 //ajout d'un compteur de coup
 let count = 0;
 
-//nombre de cartes
-const cardNumber = symboles.length;
-
 //racine carrée du nombre de carte
-const squareRoot = Math.sqrt(cardNumber);
+const squareRoot = Math.sqrt(symboles.length);
 
 //définition de la taille de la grille en fonction du nombre de carte
 const board = document.getElementById("board");
 
-let gridColumns = Number.isInteger(squareRoot)
+const gridColumns = Number.isInteger(squareRoot)
   ? squareRoot
   : Math.ceil(squareRoot);
 
@@ -69,7 +66,7 @@ function startGame() {
   //création des variables de choix
   let firstChoice = null;
   let secondChoice = null;
-  let cardFoundNumber = 0;
+  let locked = false; // à déclarer avec firstChoice et secondChoice
 
   //création d'un tableau d'index pour les carte
   let cardElement = [];
@@ -81,8 +78,6 @@ function startGame() {
 
   //création de la fonction de sélection de carte
   //placée ICI, avant le forEach, pour rester accessible dans tout startGame
-  let locked = false; // à déclarer avec firstChoice et secondChoice
-
   function selectCard(card) {
     //si le jeu est bloqué (pendant l'affichage d'une mauvaise paire), on ne fait rien
     if (locked) return;
@@ -119,6 +114,7 @@ function startGame() {
       if (pairsFoundNumber === pairsNumber) {
         //réactivation du terminal une fois la partie terminée
         gameStarted = false;
+        promptElement.hidden = false;
 
         const separation = document.createElement("p");
         separation.textContent =
@@ -172,7 +168,8 @@ function startGame() {
 
     if (key === "Enter" || key === " ") {
       e.preventDefault(); //empêche le comportement natif (espace fait défiler la page)
-      selectCard(cardElement[activeIndex]); //on appelle selectCard pour retourner la carte qui est en focus, même effet qu'au click
+      selectCard(cardElement[activeIndex]);
+      return; //on appelle selectCard pour retourner la carte qui est en focus, même effet qu'au click
     }
 
     let newIndex = activeIndex;
