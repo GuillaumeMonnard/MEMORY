@@ -119,13 +119,16 @@ function startGame() {
       //vérifier s'il reste des cartes
       const pairsFoundNumber = document.querySelectorAll(".found").length / 2;
       if (pairsFoundNumber === pairsNumber) {
+        //réactivation du terminal une fois la partie terminée
+        gameStarted = false;
+
         const separation = document.createElement("p");
         separation.textContent =
           "_________________________________________________________________________________________________";
-        document.body.appendChild(separation);
+        output.appendChild(separation);
         const winText = document.createElement("p");
         winText.textContent = "CONGRATS, You won in " + count + " moves.";
-        document.body.appendChild(winText);
+        output.appendChild(winText);
       }
     } else {
       //symboles différents : on bloque, on laisse voir 800 ms, puis on cache
@@ -233,8 +236,7 @@ const commands = {
   },
 };
 
-//création de la fonction run, qui est appelée quand le joueur
-//appuie sur enter. input = texte écrit
+//création de la fonction run, qui est appelée quand le joueur appuie sur enter. input = texte écrit
 function run(input) {
   //imprime la commande, comme dans un terminal
   print("-> " + input.toUpperCase());
@@ -275,7 +277,7 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === "ArrowUp") {
     //on empeche le comportement par défaut
     e.preventDefault();
-    //si on est pas déjà tout en haut de l'hitorique, on recule d'un cran et on mets cette ancienne commade dans le buffer
+    //si on est pas déjà tout en haut de l'hitorique, on recule d'un cran et on mets cette ancienne commande dans le buffer
     if (historyIndex > 0) buffer = history[--historyIndex];
   } else if (e.key === "ArrowDown") {
     e.preventDefault();
