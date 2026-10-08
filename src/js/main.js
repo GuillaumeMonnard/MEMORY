@@ -68,12 +68,12 @@ function startGame() {
   board.innerHTML = "";
   count = 0;
 
-  // //supprimer l'alerte de fin de partie SI il y en a un qui existe
+  // supprimer l'alerte de fin de partie SI il y en a un qui existe
   // const existingWinScreen = document.getElementById("win-alert");
   // if (existingWinScreen) {
   //   existingWinScreen.remove();
   // }
-  // alerte à supprimer car plus utilisé
+  // TODO: alerte à supprimer car plus utilisé
 
   //création des variables de choix
   let firstChoice = null;
