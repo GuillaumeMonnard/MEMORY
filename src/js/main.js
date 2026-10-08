@@ -367,7 +367,7 @@ const commands = {
   contact() {
     print("-> ");
     print("-> monnard guillaume");
-    print("-> mail - monnard.guillaume@gmail.com");
+    print("-> mail: monnard.guillaume@gmail.com");
     print("-> ");
   },
 
