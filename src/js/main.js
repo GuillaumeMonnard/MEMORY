@@ -47,13 +47,19 @@ function shuffle(array) {
 function startGame() {
   //reset du score
   count = 0;
-  //vider le board existant
-  const oldBoard = document.getElementById("board");
-  if (oldBoard) oldBoard.remove();
+  //marquer l'ancien board comme terminé
+  const previousBoard = output.querySelector(".board:not(.finished)");
+  if (previousBoard) {
+    previousBoard.classList.add("finished");
+    previousBoard.querySelectorAll(".card").forEach((card) => {
+      card.removeAttribute("tabindex");
+      card.removeAttribute("role");
+    });
+  }
 
   //définition de la taille de la grille en fonction du nombre de carte
   const board = document.createElement("div");
-  board.id = "board";
+  board.classList.add("board");
   output.appendChild(board);
 
   const gridColumns = Number.isInteger(squareRoot)
@@ -110,7 +116,7 @@ function startGame() {
       secondChoice = null;
 
       //vérifier s'il reste des cartes
-      const pairsFoundNumber = document.querySelectorAll(".found").length / 2;
+      const pairsFoundNumber = board.querySelectorAll(".found").length / 2;
       if (pairsFoundNumber === pairsNumber) {
         //réactivation du terminal une fois la partie terminée
         gameStarted = false;
