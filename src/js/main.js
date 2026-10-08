@@ -60,7 +60,6 @@ function startGame() {
   //définition de la taille de la grille en fonction du nombre de carte
   const board = document.createElement("div");
   board.classList.add("board");
-  output.appendChild(board);
 
   const gridColumns = Number.isInteger(squareRoot)
     ? squareRoot
@@ -72,7 +71,7 @@ function startGame() {
   //création des variables de choix
   let firstChoice = null;
   let secondChoice = null;
-  let locked = false; // à déclarer avec firstChoice et secondChoice
+  let locked = false;
 
   //création d'un tableau d'index pour les carte
   let cardElement = [];
@@ -174,8 +173,9 @@ function startGame() {
 
     if (key === "Enter" || key === " ") {
       e.preventDefault(); //empêche le comportement natif (espace fait défiler la page)
+
       selectCard(cardElement[activeIndex]);
-      return; //on appelle selectCard pour retourner la carte qui est en focus, même effet qu'au click
+      return;
     }
 
     let newIndex = activeIndex;
@@ -195,6 +195,7 @@ function startGame() {
       cardElement[activeIndex].focus();
     }
   });
+  output.appendChild(board);
   cardElement[0].focus();
 }
 

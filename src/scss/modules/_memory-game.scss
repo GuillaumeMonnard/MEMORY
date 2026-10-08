@@ -2,6 +2,7 @@
   max-width: 100px;
   background-color: #1524f2;
   display: grid;
+  padding: 10px;
   gap: 30px;
 }
 
@@ -39,7 +40,7 @@
   }
 
   &:focus {
-    outline: solid white;
+    outline: 1px solid white;
   }
 }
 
