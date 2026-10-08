@@ -276,7 +276,7 @@ function print(text) {
 //création des commandes disponibles dans le terminal
 const commands = {
   hello() {
-    print(`-> ⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    print(`-> Hi :)⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠚⠉⠀⣀⠈⠱⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⠀⠀⠀⡠⠟⠀⠀⣿⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⡀⣀⠀⠀⠀⠀⢸⠀⠘⡿⠁⠀⠀⣠⠞⠁⠀⠉⠉⠓⠲⠦⢤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -294,43 +294,48 @@ const commands = {
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠏⣷⠀⣏⢠⡏⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⣦⠟⡘⢠⡟⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡞⠁⡋⠓⠟⠉⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡟⠷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡾⢻⡇⠀⡇⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠏⠙⠶⢤⣄⣀⡀⠀⠀⢀⣀⣠⡤⠞⠋⠁⡇⢸⠇⠀⠃⠀⠱⠀⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡟⠷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡾⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠏⠙⠶⢤⣄⣀⡀⠀⠀⢀⣀⣠⡤⠞⠋⠁⡇⢸⠇⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡾⠀⠀⠀⠀⠀⠈⠉⠉⡏⠉⠁⠀⠀⠀⠀⠀⢡⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⣸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⡀⠀⠀⠀⠀⣀⣀⣇⠀⠀⠀⠀⠀⠀⢠⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣤⠔⠒⠉⠀⢈⣏⠀⠉⠑⠒⢄⣠⠏⠀⠀⠀⣤⣤⣤⣤⡤⣤⣶⣶⠀⣤⣤⣄
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠲⠶⠒⠋⠉⠙⠓⠒⠒⠛⠁⠀⠀⠀⠀⠙⣛⠉⠉⠉⠉⡛⡛⠁⠉⠉⠁`);
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣤⠔⠒⠉⠀⢈⣏⠀⠉⠑⠒⢄⣠⠏
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠲⠶⠒⠋⠉⠙⠓⠒⠒⠛⠁⠀⠀⠀`);
   },
 
   rules() {
     print("-> ");
     print("-> RULES");
-    print("----------------------------------------------------------");
+    print(
+      "--------------------------------------------------------------------------------",
+    );
     print("-> the board is full of face-down cards.");
     print("-> every card has an identical twin somewhere on the board.");
     print("-> flip two cards per turn. if they match, they stay revealed.");
     print("-> if they don't match, they flip back after a short moment.");
     print("-> a move = two cards flipped.");
     print("-> find all the pairs to win. the fewer moves, the better.");
+    print("-> ");
   },
 
   howtoplay() {
     print("-> ");
     print("-> HOW TO PLAY");
-    print("----------------------------------------------------------");
+    print(
+      "--------------------------------------------------------------------------------",
+    );
     print('-> 1. type "startgame" and press enter.');
-    print("-> 2. click a card to flip it, or use the keyboard:");
-    print("->    arrow keys = move between cards");
-    print("->    enter or space = flip the selected card");
+    print(
+      '-> 2. Use arrows to move between cards and press "space" or "enter" to flip it',
+    );
     print("-> 3. flip a second card and try to find its twin.");
     print(
       "-> 4. remember where the cards are. mismatched cards are hidden again.",
     );
-    print("-> 5. once every pair is found, the terminal comes back.");
     print(
-      '-> tip: type "clear" to wipe the screen, "help" to see all commands.',
+      "-> 5. once every pair is found, you see your score and the terminal comes back.",
     );
+    print("-> ");
   },
 
   startgame() {
@@ -342,10 +347,13 @@ const commands = {
   },
 
   sudo() {
+    print("-> ");
     print("-> nice try. you are not in the sudoers file.");
+    print("-> ");
   },
 
   hack() {
+    print("-> ");
     print("-> connecting to network...");
     setTimeout(() => print("-> bypassing firewall..."), 400);
     setTimeout(() => print("-> decrypting password... 37%"), 1000);
@@ -353,11 +361,14 @@ const commands = {
     setTimeout(() => print("-> decrypting password... 82%"), 2500);
     setTimeout(() => print("-> decrypting password... 100%"), 3500);
     setTimeout(() => print("-> access granted. just kidding."), 3600);
+    setTimeout(() => print("-> "), 3600);
   },
 
   contact() {
+    print("-> ");
     print("-> monnard guillaume");
     print("-> mail - monnard.guillaume@gmail.com");
+    print("-> ");
   },
 
   help() {
