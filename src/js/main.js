@@ -28,24 +28,6 @@ const symboles = [
   "F",
   "G",
   "H",
-  "I",
-  "J",
-  // "K",
-  // "L",
-  // "M",
-  // "N",
-  // "O",
-  // "P",
-  // "Q",
-  // "R",
-  // "S",
-  // "T",
-  // "U",
-  // "V",
-  // "W",
-  // "X",
-  // "Y",
-  // "Z",
   "A",
   "B",
   "C",
@@ -54,24 +36,6 @@ const symboles = [
   "F",
   "G",
   "H",
-  "I",
-  "J",
-  // "K",
-  // "L",
-  // "M",
-  // "N",
-  // "O",
-  // "P",
-  // "Q",
-  // "R",
-  // "S",
-  // "T",
-  // "U",
-  // "V",
-  // "W",
-  // "X",
-  // "Y",
-  // "Z",
 ];
 
 //ajout d'un compteur de coup
@@ -264,6 +228,7 @@ let buffer = "";
 let gameStarted = false;
 //tableau qui garde les commandes déjà tapées et index
 const history = [];
+const foundCommands = new Set();
 let historyIndex = 0;
 
 //création de la fonction de print
@@ -276,7 +241,11 @@ function print(text) {
 //création des commandes disponibles dans le terminal
 const commands = {
   hello() {
-    print(`-> Hi :)⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    print(`->            
+              -|-------------------|-
+               |       Hello :)    | 
+              -|-------------------|-
+      ⠀              ⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠚⠉⠀⣀⠈⠱⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⠀⠀⠀⡠⠟⠀⠀⣿⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⡀⣀⠀⠀⠀⠀⢸⠀⠘⡿⠁⠀⠀⣠⠞⠁⠀⠉⠉⠓⠲⠦⢤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -300,12 +269,16 @@ const commands = {
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⣸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⡀⠀⠀⠀⠀⣀⣀⣇⠀⠀⠀⠀⠀⠀⢠⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣤⠔⠒⠉⠀⢈⣏⠀⠉⠑⠒⢄⣠⠏
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠲⠶⠒⠋⠉⠙⠓⠒⠒⠛⠁⠀⠀⠀`);
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠲⠶⠒⠋⠉⠙⠓⠒⠒⠛⠁⠀⠀⠀
+      
+      Welcome to my terminal themed memory game :)
+
+      I hope you will enjoy playing it, don't hesitate to try all the commands available (type 'help' to see most of them)
+      
+      some of them are hidden command, will you be able to find them? 0_0`);
   },
 
   rules() {
-    print("-> ");
-    print("-> RULES");
     print(
       "--------------------------------------------------------------------------------",
     );
@@ -319,8 +292,6 @@ const commands = {
   },
 
   howtoplay() {
-    print("-> ");
-    print("-> HOW TO PLAY");
     print(
       "--------------------------------------------------------------------------------",
     );
@@ -371,21 +342,34 @@ const commands = {
     print("-> ");
   },
 
+  howmanyleft() {
+    const hiddenCommands = ["sudo", "hack"];
+    const found = hiddenCommands.filter((command) =>
+      foundCommands.has(command),
+    );
+    const left = hiddenCommands.length - found.length;
+    if (left > 0) {
+      print("-> " + left + " hidden command(s) left.");
+    } else {
+      print('-> almost there! type "LASTONE" to reveal the last one');
+    }
+  },
+
   help() {
     //afficher la liste des commandes
     print(
-      "-> available commands: hello, rules, howtoplay, startgame, contact, help, clear, exit",
+      "-> available commands: hello, rules, howtoplay, startgame, contact, howmanyleft, help, clear",
     );
   },
 
-  exit() {
-    print("-> goodbye.");
+  lastone() {
+    print("-> Got you, it was a trap :P");
     gameStarted = true; // bloque la saisie
     promptElement.hidden = true; // cache le prompt
     setTimeout(function () {
       document.body.innerHTML = "";
       document.body.style.backgroundColor = "black";
-    }, 1000);
+    }, 2000);
   },
 
   clear() {
@@ -410,6 +394,7 @@ function run(input) {
 
   //on va chercher la commande entrée et si elle existe on l'exécute
   if (commands[name]) {
+    foundCommands.add(name);
     commands[name]();
   } else {
     print("-> command not found: " + name.toUpperCase());
