@@ -335,16 +335,6 @@ const commands = {
     setTimeout(() => print("-> "), 3600);
   },
 
-  contact() {
-    print("-> ");
-
-    print(
-      "-> If you would like to reach me for a personal project, you can send me an email at the adress below.",
-    );
-    print("-> monnard.guillaume@gmail.com");
-    print("-> ");
-  },
-
   howmanyleft() {
     const hiddenCommands = ["sudo", "hack"];
     const found = hiddenCommands.filter((command) =>
@@ -361,7 +351,7 @@ const commands = {
   help() {
     //afficher la liste des commandes
     print(
-      "-> available commands: hello, rules, howtoplay, startgame, contact, howmanyleft, help, clear",
+      "-> available commands: hello, rules, howtoplay, startgame, howmanyleft, help, clear",
     );
   },
 
