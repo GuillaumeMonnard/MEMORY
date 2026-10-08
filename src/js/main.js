@@ -26,16 +26,6 @@ let count = 0;
 //racine carrée du nombre de carte
 const squareRoot = Math.sqrt(symboles.length);
 
-//définition de la taille de la grille en fonction du nombre de carte
-const board = document.getElementById("board");
-
-const gridColumns = Number.isInteger(squareRoot)
-  ? squareRoot
-  : Math.ceil(squareRoot);
-
-board.style.gridTemplateRows = "repeat(" + gridColumns + ", 1fr)";
-board.style.gridTemplateColumns = "repeat(" + gridColumns + ", 1fr)";
-
 //nombre de paires
 const pairsNumber = symboles.length / 2;
 
@@ -43,13 +33,9 @@ const pairsNumber = symboles.length / 2;
 function shuffle(array) {
   let currentIndex = array.length;
 
-  // While there remain elements to shuffle...
   while (currentIndex != 0) {
-    // Pick a remaining element...
     let randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
-    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
       array[currentIndex],
@@ -59,9 +45,23 @@ function shuffle(array) {
 
 //création d'une fonction pour lancer la partie
 function startGame() {
-  //vider le board existant
-  board.innerHTML = "";
+  //reset du score
   count = 0;
+  //vider le board existant
+  const oldBoard = document.getElementById("board");
+  if (oldBoard) oldBoard.remove();
+
+  //définition de la taille de la grille en fonction du nombre de carte
+  const board = document.createElement("div");
+  board.id = "board";
+  output.appendChild(board);
+
+  const gridColumns = Number.isInteger(squareRoot)
+    ? squareRoot
+    : Math.ceil(squareRoot);
+
+  board.style.gridTemplateRows = "repeat(" + gridColumns + ", 1fr)";
+  board.style.gridTemplateColumns = "repeat(" + gridColumns + ", 1fr)";
 
   //création des variables de choix
   let firstChoice = null;
