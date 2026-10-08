@@ -1,5 +1,22 @@
-import { gsap } from "gsap";
+//affichage de la date et l'heure actuelles dans la ligne "last login"
+const lastLogin = document.getElementById("last-login");
+const now = new Date();
 
+const day = now.toLocaleDateString("en-US", { weekday: "short" }).toLowerCase();
+const month = now.toLocaleDateString("en-US", { month: "short" }).toLowerCase();
+const date = now.getDate();
+const time = now.toLocaleTimeString("en-GB"); // format 24h : 08:26:58
+
+lastLogin.textContent =
+  "-> last login: " +
+  day +
+  " " +
+  month +
+  " " +
+  date +
+  " " +
+  time +
+  " on ttys000";
 //tableau des symboles
 const symboles = [
   "A",
