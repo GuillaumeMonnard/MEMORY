@@ -17,6 +17,7 @@ lastLogin.textContent =
   " " +
   time +
   " on ttys000";
+
 //tableau des symboles
 const symboles = [
   "A",
