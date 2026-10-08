@@ -378,6 +378,16 @@ const commands = {
     );
   },
 
+  exit() {
+    print("-> goodbye.");
+    gameStarted = true; // bloque la saisie
+    promptElement.hidden = true; // cache le prompt
+    setTimeout(function () {
+      document.body.innerHTML = "";
+      document.body.style.backgroundColor = "black";
+    }, 1000);
+  },
+
   clear() {
     //on efface tout le contenu du terminal
     output.innerHTML = "";
